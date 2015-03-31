@@ -20,7 +20,7 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/mithileshd27.lip87mfm/{z}/{x}/{y}.pn
 }).addTo(map);
 d3.json("httpS://apipune.herokuapp.com/sensors/temp", function(error, data) {
 var office = L.marker([18.56862257832171, 73.90753984451294]).addTo(map);
-office.bindPopup("<b>This is RHC</b><br>Temp is " + data[0].value + " C at time is ").openPopup();
+office.bindPopup("<b>This is RHC</b><br>Temp is " + data[data.length - 1].value + " C at time is ").openPopup();
 });
 
 </script>
