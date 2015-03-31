@@ -13,14 +13,26 @@
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <div id="map"><div>
 <script>
-var map = L.map('map').setView([18.56862257832171, 73.90753984451294], 13);
+d3.json("httpS://apipune.herokuapp.com/sensors/temp", function(error, data) {
+var lon[5], lat[5];
+lon[0] = data[data.length -1].geo_long[0];
+lon[1] = data[data.length -1].geo_long[1];
+lon[2] = data[data.length -1].geo_long[2];
+lon[3] = data[data.length -1].geo_long[3];
+lon[4] = data[data.length -1].geo_long[4];
+lat[0] = data[data.length -1].geo_lat[0];
+lat[1] = data[data.length -1].geo_lat[1];
+lat[2] = data[data.length -1].geo_lat[2];
+lat[3] = data[data.length -1].geo_lat[3];
+lat[4] = data[data.length -1].geo_lat[4];
+//var map = L.map('map').setView([18.56862257832171, 73.90753984451294], 13);
+var map = L.map('map').setView([lon, lat], 13);
 L.tileLayer('http://{s}.tiles.mapbox.com/v3/mithileshd27.lip87mfm/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
 }).addTo(map);
-d3.json("httpS://apipune.herokuapp.com/sensors/temp", function(error, data) {
-var office = L.marker([18.56862257832171, 73.90753984451294]).addTo(map);
-office.bindPopup("<b>This is RHC</b><br>Temp is " + data[data.length - 1].value + " C at time is ").openPopup();
+var office = L.marker([lon, lat]).addTo(map);
+office.bindPopup("<b>This is Pune.io</b><br>Temp is " + data[data.length - 1].value + " C").openPopup();
 });
 
 </script>
