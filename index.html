@@ -13,7 +13,7 @@
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <div id="map"><div>
 <script>
-d3.json("https://apipune.herokuapp.com/sensors/temp", function(error, data) {
+d3.json("https://apipune.herokuapp.com/sensors/pir", function(error, data) {
 var map = L.map('map').setView([18.5190859, 73.8163554], 13);
 //var map = L.map('map').setView([lon, lat], 13);
 L.tileLayer('http://{s}.tiles.mapbox.com/v3/eleanor.ipncow29/{z}/{x}/{y}.png', {
@@ -21,16 +21,9 @@ L.tileLayer('http://{s}.tiles.mapbox.com/v3/eleanor.ipncow29/{z}/{x}/{y}.png', {
     maxZoom: 18
 }).addTo(map);
 var office = L.marker([18.56860223767165,73.90717506408691]).addTo(map);
-office.bindPopup("<b>This is Pune.io at RHC</b><br>Temp is 31 C").openPopup();
+office.bindPopup("<b>This is Pune.io at RHC</b><br>Motion is " + data[data.length-1].value).openPopup();
 var college = L.marker([18.46509800786989,73.83634328842163]).addTo(map);
 college.bindPopup("<b>This is Pune.io at SKN</b><br>Temp is 32 C").openPopup();
-var popup1 = L.marker([18.50402880363997,73.8497543334961]).addTo(map);
-popup1.bindPopup("<b>This is Pune.io<br></b>Temp is 35 C").openPopup();
-var popup2 = L.marker([18.497842796761336,73.80889892578125]).addTo(map);
-popup2.bindPopup("<b>This is Pune.io<br></b>Temp is 30 C").openPopup();
-var popup3 = L.marker([18.47081709480877,73.86486053466797]).addTo(map);
-popup3.bindPopup("<b>This is Pune.io<br></b>Temp is 31 C").openPopup();
-    
 });
 
 </script>
